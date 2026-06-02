@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+kid_reward_system.db
+.env
