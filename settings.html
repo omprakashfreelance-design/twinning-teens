@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Twinning Teens</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="page-header">
+        <div>
+            <h1>Settings</h1>
+            <p>Device configuration sent through /device-config/&lt;device_id&gt;</p>
+        </div>
+        <a class="nav-button" href="{{ url_for('index') }}">Dashboard</a>
+    </header>
+
+    <main class="grid single">
+        <section class="card settings-card">
+            <form method="POST" action="{{ url_for('settings_page') }}" class="settings-form">
+                <label>
+                    WiFi SSID
+                    <input type="text" name="wifi_ssid" value="{{ settings.wifi_ssid }}">
+                </label>
+                <label>
+                    WiFi Password
+                    <input type="password" name="wifi_password" value="{{ settings.wifi_password }}">
+                </label>
+                <label>
+                    Server URL
+                    <input type="url" name="server_url" value="{{ settings.server_url }}" placeholder="https://project.onrender.com">
+                </label>
+                <label>
+                    Noise Threshold
+                    <input type="number" name="noise_threshold" min="0" step="1" value="{{ settings.noise_threshold }}">
+                </label>
+                <label>
+                    Recording Duration
+                    <input type="number" name="record_sec" min="1" max="60" step="1" value="{{ settings.record_sec }}">
+                </label>
+                <label class="check-row">
+                    <input type="checkbox" name="monitoring_enabled" {% if settings.monitoring_enabled %}checked{% endif %}>
+                    Monitoring Enabled
+                </label>
+                <button class="btn btn-green" type="submit">Save Settings</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
